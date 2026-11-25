@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="es-BO">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Hattori · Cocina fusión Nikkei · Santa Cruz de la Sierra</title>
+  <meta name="description" content="Hattori, restaurante de cocina fusión Nikkei en Santa Cruz de la Sierra. Sushi, ceviches, ramen y platos para compartir en Equipetrol y Las Palmas. Pide por WhatsApp o con HattorIA.">
+  <meta name="theme-color" content="#14110f">
+  <link rel="canonical" href="https://hattori.vercel.app/">
+  <meta property="og:type" content="restaurant">
+  <meta property="og:title" content="Hattori · Cocina fusión Nikkei · Santa Cruz">
+  <meta property="og:description" content="Una marca. Una cultura. Historias infinitas. Equipetrol y Las Palmas.">
+  <meta property="og:image" content="https://hattori.vercel.app/assets/brand/hattori-share.png">
+  <meta property="og:locale" content="es_BO">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" href="assets/brand/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700;800&family=Manrope:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Restaurant","name":"Hattori","servesCuisine":["Nikkei","Japanese","Peruvian","Sushi"],
+   "address":{"@type":"PostalAddress","streetAddress":"Calle Los Lirios #86, Equipetrol","addressLocality":"Santa Cruz de la Sierra","addressCountry":"BO"},
+   "telephone":"+59162098707","priceRange":"Bs 60–175","sameAs":["https://www.instagram.com/hattoribolivia/","https://www.facebook.com/hattorifusion/"],
+   "openingHoursSpecification":[
+     {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"18:00","closes":"23:00"},
+     {"@type":"OpeningHoursSpecification","dayOfWeek":["Saturday","Sunday"],"opens":"12:00","closes":"15:00"},
+     {"@type":"OpeningHoursSpecification","dayOfWeek":["Saturday","Sunday"],"opens":"18:00","closes":"23:00"}]}
+  </script>
+</head>
+<body>
+<a class="skip" href="#main">Saltar al contenido</a>
+
+<!-- Info bar (Monte-style flanks) -->
+<div class="topbar" role="note">
+  <div class="wrap topbar__in">
+    <a href="#sucursales" class="topbar__status"><span class="dot" data-live-dot></span><span data-live-text>Consultando horario…</span></a>
+    <span class="topbar__slogan">Una marca · Una cultura · Historias infinitas</span>
+    <a class="topbar__tel" href="https://wa.me/59162098707" target="_blank" rel="noopener">WhatsApp 62098707</a>
+  </div>
+</div>
+
+<header class="hdr" id="hdr">
+  <div class="wrap hdr__in">
+    <div class="hdr__left">
+      <button class="iconbtn hdr__burger" id="burger" aria-expanded="false" aria-controls="navpanel" aria-label="Abrir menú">
+        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M3 7h18M3 12h18M3 17h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+      <nav class="hdr__nav" aria-label="Principal">
+        <a href="#carta">Carta</a><a href="#sucursales">Sucursales</a><a href="#experiencia">Experiencia</a><a href="#pedir">Pedir</a>
+      </nav>
+    </div>
+    <a href="#top" class="wordmark" aria-label="Hattori, inicio">
+      <span class="wordmark__mark" aria-hidden="true"></span>
+      <span class="wordmark__txt">HATTORI</span>
+      <span class="wordmark__sub">日系 · Nikkei</span>
+    </a>
+    <div class="hdr__right">
+      <button class="pill pill--ai" data-open-chat><span class="spark" aria-hidden="true">✦</span><span>HattorIA</span></button>
+      <button class="iconbtn bagbtn" data-open-cart aria-label="Ver mi pedido">
+        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M5 8h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8L5 8Z M9 8V6.5a3 3 0 0 1 6 0V8" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+        <span class="bagbtn__n" data-cart-count hidden>0</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="navpanel" id="navpanel" hidden>
+  <nav aria-label="Menú móvil">
+    <a href="#carta">Carta</a><a href="#firmas">Firmas</a><a href="#sucursales">Sucursales</a><a href="#experiencia">Experiencia</a><a href="#pedir">Pedir por WhatsApp</a>
+    <button data-open-chat class="navpanel__ai">✦ HattorIA</button>
+  </nav>
+</div>
+
+<main id="main">
+  <!-- HERO -->
+  <section class="hero" id="top" aria-labelledby="hero-title">
+    <div class="hero__bg" aria-hidden="true"><span class="sun"></span><span class="seigaiha"></span></div>
+    <div class="wrap hero__grid">
+      <div class="hero__copy">
+        <p class="kicker">Cocina fusión Nikkei · Santa Cruz de la Sierra</p>
+        <h1 id="hero-title" class="hero__title">Una marca.<br>Una cultura.<br><em>Historias infinitas.</em></h1>
+        <p class="hero__lede">La intensidad peruana con la precisión japonesa. Sushi, ceviches, ramen y platos para compartir en Equipetrol y Las Palmas.</p>
+        <div class="hero__ctas">
+          <a href="#carta" class="btn btn--red btn--lg">Ver la carta</a>
+          <button class="btn btn--ghost btn--lg" data-open-chat>Pedir con HattorIA ✦</button>
+        </div>
+      </div>
+      <div class="stack" id="stack" aria-roledescription="carrusel" aria-label="Firmas de la casa">
+        <div class="stack__cards" data-stack></div>
+        <div class="stack__ctrl">
+          <button class="roundbtn" data-stack-prev aria-label="Anterior">←</button>
+          <span class="stack__count" data-stack-count>1 / 3</span>
+          <button class="roundbtn" data-stack-next aria-label="Siguiente">→</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Order box (Uber Eats / DoorDash pattern) -->
+    <form class="orderbox" id="orderbox" aria-label="¿Cómo quieres tu pedido?">
+      <p class="orderbox__title">¿Cómo quieres tu pedido?</p>
+      <div class="seg" role="radiogroup" aria-label="Tipo de pedido">
+        <label><input type="radio" name="ob-intent" value="delivery" checked><span>🛵 Delivery</span></label>
+        <label><input type="radio" name="ob-intent" value="pickup"><span>🥢 Retiro</span></label>
+        <label><input type="radio" name="ob-intent" value="reserva"><span>🍶 Mesa</span></label>
+      </div>
+      <div class="orderbox__row">
+        <label class="sr" for="ob-branch">Sucursal</label>
+        <select id="ob-branch" data-branch-select></select>
+        <button class="btn btn--ink" type="submit">Empezar →</button>
+      </div>
+      <p class="orderbox__status" data-ob-status></p>
+    </form>
+  </section>
+
+  <!-- SIGNATURES (CHOPT/Chipotle big rows) -->
+  <section class="sec sec--paper" id="firmas" aria-labelledby="firmas-t">
+    <div class="wrap">
+      <header class="sechead reveal">
+        <p class="eyebrow">Los más pedidos</p>
+        <h2 id="firmas-t" class="display">Firmas de <span class="hl">la casa</span></h2>
+      </header>
+      <ol class="sigs" data-sigs></ol>
+    </div>
+  </section>
+
+  <!-- MENU SHEET (Monte-style typeset menu) -->
+  <section class="sec sec--washi" id="carta" aria-labelledby="carta-t">
+    <div class="wrap">
+      <header class="sechead sechead--row reveal">
+        <div>
+          <p class="eyebrow">La carta</p>
+          <h2 id="carta-t" class="display">Carta <span class="hl">Nikkei</span></h2>
+        </div>
+        <div class="menutools">
+          <label class="search"><span class="sr">Buscar en la carta</span>
+            <input type="search" placeholder="Buscar: acevichado, ceviche, ramen…" data-menu-search>
+          </label>
+        </div>
+      </header>
+      <div class="tabs" role="tablist" aria-label="Categorías" data-tabs></div>
+      <div class="sheet" data-sheet></div>
+      <p class="fine">Precios en bolivianos (Bs). Los platos marcados “Consultar” se piden por WhatsApp mientras publicamos su precio. Consulta en sucursal por alérgenos.</p>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="sec sec--ink" id="experiencia" aria-labelledby="exp-t">
+    <div class="wrap exp">
+      <div class="exp__art reveal" aria-hidden="true">
+        <div class="exp__circle"><span>日系</span></div>
+        <div class="exp__wave"></div>
+      </div>
+      <div class="exp__copy reveal">
+        <p class="eyebrow" data-story-eyebrow></p>
+        <h2 id="exp-t" class="display" data-story-title></h2>
+        <div data-story-paras></div>
+        <blockquote class="quote" data-story-quote></blockquote>
+        <div class="exp__ao">
+          <p class="kicker kicker--gold">After office</p>
+          <p class="exp__aotxt">El mejor after office está en Hattori 🍹✨</p>
+          <a href="#sucursales" class="btn btn--gold">Ver sucursales</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BRANCHES -->
+  <section class="sec sec--paper" id="sucursales" aria-labelledby="suc-t">
+    <div class="wrap">
+      <header class="sechead sechead--row reveal">
+        <div>
+          <p class="eyebrow">Te esperamos</p>
+          <h2 id="suc-t" class="display">Dos <span class="hl">sucursales</span></h2>
+        </div>
+        <p class="clockpill" data-clock></p>
+      </header>
+      <div class="branches" data-branches></div>
+    </div>
+  </section>
+
+  <!-- FUNNEL (DoorDash/Uber Eats checkout layout) -->
+  <section class="sec sec--ink" id="pedir" aria-labelledby="pedir-t">
+    <div class="wrap">
+      <header class="sechead reveal">
+        <p class="eyebrow">Pide en 4 pasos</p>
+        <h2 id="pedir-t" class="display">Tu pedido, <span class="hl">directo por WhatsApp</span></h2>
+        <p class="sub">Lo registramos, te damos un código para seguirlo y te abrimos WhatsApp con todo listo.</p>
+      </header>
+      <div class="funnel">
+        <form class="funnel__form" id="funnel" novalidate>
+          <ol class="steps" aria-label="Progreso">
+            <li data-step-dot="1" class="on">Qué</li><li data-step-dot="2">Detalle</li><li data-step-dot="3">Tus datos</li><li data-step-dot="4">Enviar</li>
+          </ol>
+
+          <fieldset class="step" data-step="1">
+            <legend>¿Qué necesitas?</legend>
+            <div class="choices">
+              <label class="choice"><input type="radio" name="intent" value="delivery" checked><span><b>Delivery</b><small>Te lo llevamos</small></span></label>
+              <label class="choice"><input type="radio" name="intent" value="pickup"><span><b>Retiro</b><small>Pasas por la sucursal</small></span></label>
+              <label class="choice"><input type="radio" name="intent" value="reserva"><span><b>Reservar mesa</b><small>Para comer aquí</small></span></label>
+              <label class="choice"><input type="radio" name="intent" value="consulta"><span><b>Consulta</b><small>Pregúntanos lo que quieras</small></span></label>
+            </div>
+            <div class="stepnav"><span></span><button type="button" class="btn btn--red" data-next>Siguiente →</button></div>
+          </fieldset>
+
+          <fieldset class="step" data-step="2" hidden>
+            <legend data-step2-legend>Tu pedido</legend>
+            <div data-when="order">
+              <div class="fcart" data-fcart></div>
+              <details class="picker"><summary>+ Agregar de la carta</summary><div class="picker__list" data-picker></div></details>
+            </div>
+            <div data-when="reserva" hidden class="grid2">
+              <label>Fecha<input type="date" name="date"></label>
+              <label>Personas<input type="number" name="guests" min="1" max="40" value="2"></label>
+              <label class="span2">Ocasión (opcional)<input name="occasion" placeholder="Cumpleaños, after office, negocios…"></label>
+            </div>
+            <div data-when="consulta" hidden>
+              <label>Tu consulta<textarea name="question" rows="3" placeholder="Escribe tu pregunta"></textarea></label>
+              <button type="button" class="btn btn--ghost btn--sm" data-open-chat>O pregúntale a HattorIA ✦</button>
+            </div>
+            <div class="stepnav"><button type="button" class="btn btn--ghost" data-prev>← Atrás</button><button type="button" class="btn btn--red" data-next>Siguiente →</button></div>
+          </fieldset>
+
+          <fieldset class="step" data-step="3" hidden>
+            <legend>Tus datos</legend>
+            <div class="grid2">
+              <label>Nombre<input name="name" autocomplete="given-name" required></label>
+              <label>WhatsApp<input name="phone" inputmode="tel" autocomplete="tel" placeholder="7XXXXXXX" required></label>
+              <label class="span2">Sucursal<select name="branch" data-branch-select></select></label>
+              <label class="span2" data-when-delivery>Dirección<input name="address" placeholder="Calle, número, barrio"></label>
+              <label class="span2" data-when-delivery>Referencia<input name="reference" placeholder="Portón negro, frente a…"></label>
+            </div>
+            <div class="whenchips" role="radiogroup" aria-label="Cuándo">
+              <label><input type="radio" name="when" value="asap" checked><span>Lo antes posible</span></label>
+              <label><input type="radio" name="when" value="later"><span>Programar</span></label>
+              <input type="time" name="time" aria-label="Hora" hidden>
+            </div>
+            <label>Nota (opcional)<input name="notes" placeholder="Sin cebolla, palitos extra…"></label>
+            <p class="ferr" role="alert" data-ferr></p>
+            <div class="stepnav"><button type="button" class="btn btn--ghost" data-prev>← Atrás</button><button type="button" class="btn btn--red" data-next>Revisar →</button></div>
+          </fieldset>
+
+          <fieldset class="step" data-step="4" hidden>
+            <legend>Revisa y envía</legend>
+            <div class="review" data-review></div>
+            <p class="ferr" role="alert" data-ferr4></p>
+            <div class="stepnav"><button type="button" class="btn btn--ghost" data-prev>← Atrás</button><button type="submit" class="btn btn--wa btn--lg" data-send>Enviar por WhatsApp</button></div>
+            <div class="success" data-success hidden></div>
+          </fieldset>
+        </form>
+
+        <aside class="phone" aria-label="Vista previa del mensaje de WhatsApp">
+          <div class="phone__top"><span class="phone__av">H</span><div><b>Hattori</b><small data-phone-branch>Equipetrol</small></div></div>
+          <div class="phone__chat"><div class="bubble bubble--out" data-phone-msg aria-live="polite">Hola Hattori 👋</div></div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSTAGRAM captions wall -->
+  <section class="sec sec--washi" id="instagram" aria-labelledby="ig-t">
+    <div class="wrap">
+      <header class="sechead sechead--row reveal">
+        <div><p class="eyebrow">@hattoribolivia</p><h2 id="ig-t" class="display">Historias <span class="hl">infinitas</span></h2></div>
+        <a class="btn btn--ink" href="https://www.instagram.com/hattoribolivia/" target="_blank" rel="noopener">Síguenos en Instagram ↗</a>
+      </header>
+      <div class="feed" data-feed></div>
+    </div>
+  </section>
+</main>
+
+<footer class="ftr">
+  <div class="seigaiha-strip" aria-hidden="true"></div>
+  <div class="wrap ftr__in">
+    <p class="ftr__sign">Te esperamos en <span>Hattori</span>.</p>
+    <button class="btn btn--red" data-open-chat>¿Ayuda? Habla con HattorIA ›</button>
+    <div class="ftr__cols">
+      <details><summary>Carta</summary><a href="#firmas">Firmas</a><a href="#carta">Rolls</a><a href="#carta">Cocina Nikkei</a></details>
+      <details><summary>Pedidos</summary><a href="#pedir">Delivery</a><a href="#pedir">Retiro</a><a href="#pedir">Reservar mesa</a></details>
+      <details><summary>Sucursales</summary><a href="#sucursales">Equipetrol</a><a href="#sucursales">Las Palmas</a></details>
+      <details><summary>Hattori</summary><a href="#experiencia">Experiencia</a><a href="https://www.instagram.com/hattoribolivia/" target="_blank" rel="noopener">Instagram</a><a href="https://www.facebook.com/hattorifusion/" target="_blank" rel="noopener">Facebook</a></details>
+    </div>
+    <p class="ftr__fine">Lun–Vie 18:00–23:00 · Sáb–Dom 12:00–15:00 y 18:00–23:00 · Santa Cruz de la Sierra · © <span data-year></span> Hattori</p>
+  </div>
+  <div class="ftr__bar">
+    <div class="wrap ftr__barin">
+      <a href="https://wa.me/59162098707" target="_blank" rel="noopener">Bolivia · WhatsApp 62098707</a>
+      <span class="wordmark wordmark--sm"><span class="wordmark__mark" aria-hidden="true"></span><span class="wordmark__txt">HATTORI</span></span>
+      <span class="ftr__social">
+        <a href="https://www.instagram.com/hattoribolivia/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" width="20" height="20"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg></a>
+        <a href="https://wa.me/59162098707" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" width="20" height="20"><path d="M4 20l1.3-3.8A8 8 0 1 1 8 19l-4 1Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<!-- Cart drawer (sweetgreen bag) -->
+<div class="scrim" data-scrim hidden></div>
+<aside class="drawer" id="cart" role="dialog" aria-modal="true" aria-labelledby="cart-t" hidden>
+  <header class="drawer__hd"><h2 id="cart-t">Tu pedido</h2><button class="iconbtn" data-close-cart aria-label="Cerrar">✕</button></header>
+  <div class="drawer__body" data-cart-body></div>
+  <footer class="drawer__ft">
+    <div class="drawer__tot"><span>Total</span><b data-cart-total>Bs 0</b></div>
+    <a href="#pedir" class="btn btn--red btn--block" data-cart-go>Continuar pedido →</a>
+    <button class="btn btn--ghost btn--block btn--sm" data-open-chat>Terminar con HattorIA ✦</button>
+  </footer>
+</aside>
+
+<!-- HattorIA chat -->
+<button class="aifab" data-open-chat aria-label="Abrir HattorIA">
+  <span class="aifab__av">✦</span><span class="aifab__txt"><b>HattorIA</b><small>¿Te ayudo a pedir?</small></span><span class="dot dot--on"></span>
+</button>
+<section class="chat" id="chat" role="dialog" aria-modal="false" aria-labelledby="chat-t" hidden>
+  <header class="chat__hd">
+    <span class="chat__av">✦</span>
+    <div><h2 id="chat-t">HattorIA</h2><small><span class="dot dot--on"></span> Asistente de pedidos</small></div>
+    <button class="iconbtn" data-close-chat aria-label="Cerrar chat">✕</button>
+  </header>
+  <div class="chat__log" data-chat-log role="log" aria-live="polite"></div>
+  <div class="chat__chips" data-chat-chips></div>
+  <form class="chat__in" data-chat-form>
+    <label class="sr" for="chat-input">Mensaje</label>
+    <input id="chat-input" autocomplete="off" placeholder="Escribe tu pedido…" maxlength="600">
+    <button class="micbtn" type="button" data-mic aria-label="Hablar" hidden>
+      <svg viewBox="0 0 24 24" width="20" height="20"><rect x="9" y="3" width="6" height="11" rx="3" fill="currentColor"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg>
+    </button>
+    <button class="sendbtn" aria-label="Enviar">↑</button>
+  </form>
+  <div class="voicebar" data-voicebar hidden>
+    <span class="eq" aria-hidden="true"><i></i><i></i><i></i></span>
+    <span data-voice-status>Toca el micrófono y habla</span>
+    <label class="switch"><input type="checkbox" data-handsfree><span>Manos libres</span></label>
+  </div>
+  <p class="chat__disc">HattorIA es una IA y puede equivocarse. Confirma tu pedido por WhatsApp.</p>
+</section>
+
+<!-- Mobile action bar (Starbucks-style store bar) -->
+<nav class="mbar" aria-label="Acciones rápidas" data-mbar>
+  <button class="mbar__ai" data-open-chat aria-label="HattorIA">✦</button>
+  <button class="mbar__cart" data-open-cart><span data-mbar-cart>Tu pedido</span></button>
+  <a class="mbar__go" href="#pedir">Pedir →</a>
+</nav>
+
+<div class="toast" role="status" aria-live="polite" data-toast></div>
+
+<script src="js/data.js"></script>
+<script src="js/config.js"></script>
+<script src="js/app.js" defer></script>
+</body>
+</html>

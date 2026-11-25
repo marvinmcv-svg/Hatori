@@ -1,0 +1,13 @@
+{
+  "name": "Hattori · Cocina fusión Nikkei",
+  "short_name": "Hattori",
+  "description": "Cocina fusión Nikkei en Santa Cruz de la Sierra. Pide por WhatsApp o con HattorIA.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f4eee4",
+  "theme_color": "#14110f",
+  "icons": [
+    { "src": "/assets/brand/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/assets/brand/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

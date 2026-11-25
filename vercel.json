@@ -1,0 +1,7 @@
+{
+  "functions": { "api/hattoria.js": { "maxDuration": 60 } },
+  "headers": [
+    { "source": "/admin/(.*)", "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }] },
+    { "source": "/seguimiento/(.*)", "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }] }
+  ]
+}
