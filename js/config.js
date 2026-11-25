@@ -6,7 +6,7 @@
   const CONFIG = {
     supabaseUrl: "",          // e.g. https://xxxx.supabase.co   (needs owner input)
     supabaseKey: "",          // publishable key (sb_publishable_…)
-    siteUrl: "https://hattori-marvinmcv-svgs-projects.vercel.app",
+    siteUrl: "https://hattori-rose.vercel.app",
     trackPath: "/seguimiento/",
   };
   if (typeof module !== "undefined" && module.exports) module.exports = CONFIG;
