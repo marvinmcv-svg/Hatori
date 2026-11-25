@@ -15,17 +15,19 @@ const words = (s) => norm(s).split(" ").filter(Boolean);
 
 /* ---------- Synonyms: customer words → menu words (teach new ones from hattoria_miss logs) */
 const SYNONYMS = {
-  "sushi": "roll", "rollo": "roll", "rollos": "roll", "rolls": "roll", "maki": "maki", "makis": "maki",
-  "calamar": "ika", "pulpo": "ika", "trucha": "masu", "salmon": "masu",
-  "tabla": "tabla", "bandeja": "tabla", "compartir": "tabla", "platter": "tabla", "grupo": "tabla",
-  "cebiche": "ceviche", "seviche": "ceviche", "sebiche": "ceviche",
-  "pasta": "fetuccine", "fideo": "fetuccine", "fideos": "fetuccine", "fettuccine": "fetuccine", "huancaina": "fetuccine",
+  "sushi": "roll", "rollo": "roll", "rollos": "roll", "rolls": "roll", "makis": "maki", "pieza": "pzas", "piezas": "pzas",
+  "trucha": "trucha", "atun": "atun", "tuna": "atun", "camaron": "langostinos", "camarones": "langostinos", "langostino": "langostinos",
+  "bandeja": "tabla", "platter": "tabla", "tablas": "tabla",
+  "cebiche": "ceviche", "seviche": "ceviche", "sebiche": "ceviche", "ceviches": "ceviche",
+  "pasta": "fettuccine", "fideo": "fettuccine", "fideos": "fettuccine", "fetuccine": "fettuccine", "fetuchini": "fettuccine", "huancaina": "huancaina",
   "sopa": "ramen", "caldo": "ramen", "noodles": "ramen",
-  "ensalada": "salad", "salad": "salad", "bowl": "bowl", "poke": "bowl",
-  "frito": "fried", "frita": "fried", "fritos": "fried", "crocante": "fried", "tempura": "fried",
-  "acevichado": "acevichado", "acevichada": "acevichado", "tartar": "tartar", "tartare": "tartar",
+  "ensalada": "salad", "bowl": "bowl", "poke": "bowl",
+  "frito": "fried", "frita": "fried", "fritos": "fried", "tempura": "tempura",
+  "acevichada": "acevichado", "tartare": "tartar", "postre": "postres", "dulce": "postres", "helado": "helado",
+  "ninos": "kids", "nino": "kids", "infantil": "kids", "almuerzo": "medio", "mediodia": "medio",
+  "cerdo": "cerdo", "chancho": "cerdo", "carne": "lomito", "lomo": "lomito", "pollo": "pollo", "pulpo": "pulpo",
 };
-const MULTI_SYNONYMS = { "para compartir": "tabla", "sin crudo": "", "sopa japonesa": "ramen" };
+const MULTI_SYNONYMS = { "medio dia": "medio", "sin crudo": "", "sopa japonesa": "ramen", "para ninos": "kids" };
 
 /* ---------- state hardening (everything from the browser is untrusted) */
 const SERVICES = ["delivery", "pickup"];
@@ -94,13 +96,17 @@ function searchMenu(query) {
   const all = Object.values(CAT);
   if (!ws.length && !drop.size) return [];
   const scored = all.map((it) => {
-    const tw = itemText(it);
+    const tw = itemText(it), nw = words(it.name + " " + (it.size || ""));
     let score = 0;
-    for (const w of ws) { if (tw.some((x) => x === w)) score += 3; else if (tw.some((x) => x.startsWith(w) && w.length >= 3)) score += 1; }
+    for (const w of ws) {
+      if (nw.some((x) => x === w)) score += 6; else if (nw.some((x) => x.startsWith(w) && w.length >= 3)) score += 4;
+      else if (tw.some((x) => x === w)) score += 2; else if (tw.some((x) => x.startsWith(w) && w.length >= 3)) score += 1;
+    }
+    if (it.cat === "mediodia" && !ws.includes("medio")) score -= 1;
     for (const d of drop) if (tw.some((x) => x.startsWith(d))) score -= 5;
     return { it, score };
   }).filter((x) => x.score > 0 || (!ws.length && x.score === 0 && drop.size));
-  scored.sort((a, b) => b.score - a.score || (a.it.kind === "main" ? -1 : 1) || a.it.sort - b.it.sort);
+  scored.sort((a, b) => b.score - a.score || (a.it.kind === "main" ? 0 : 1) - (b.it.kind === "main" ? 0 : 1) || a.it.sort - b.it.sort);
   return scored.slice(0, 8).map((x) => x.it);
 }
 function resolveItem(ref) {

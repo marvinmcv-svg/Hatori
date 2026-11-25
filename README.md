@@ -41,7 +41,7 @@ An editorial Nikkei direction (sumi ink · washi paper · vermilion · gold; Shi
 | Floating store/cart bar on mobile | Starbucks |
 | Kanban order board | Slack lists, HubSpot help desk |
 
-The palette is **provisional**: Hattori's logo and post graphics weren't publicly downloadable, so colours couldn't be pixel-sampled. Swap the hex values at the top of `css/styles.css` (token names stay).
+The palette and logo come from Hattori's own assets (see "Sources" below).
 
 ## HattorIA (the assistant)
 
@@ -88,26 +88,26 @@ npm test
 npx vercel dev
 ```
 
-## Needs owner input
+## Sources and what is real
 
-Everything below was **not public** on Instagram, Facebook or other sources, so it's left out of the site and the assistant on purpose:
+- **Brand:** gold brush logo from the Instagram profile (HD). Palette sampled from the logo (#D3A334 on black) and from the official menu (charcoal #3D3F41, gold #C6A23C). Fonts: Fraunces and Allura, the closest open fonts to the menu's Larken and Eyesome Script. Slogan "Cocina con Sentimiento" from the lunch menu.
+- **Menu and prices:** the official **Menú** (93 dishes) and **Carta del Medio Día** (8 dishes) PDFs linked from [linktr.ee/hattorifusion](https://linktr.ee/hattorifusion).
+- **Photos and reels:** downloaded from @hattoribolivia's latest posts (7 photos, 5 reels), compressed into `assets/`.
+- **Contact:** reservations and orders on WhatsApp 62098707 (Linktree). Equipetrol: Los Lirios #86 (Google Maps link in the bio). Las Palmas: map pin from the bio.
+
+## Needs owner input
 
 | Missing | Where to add it |
 |---|---|
-| **Full menu with prices.** Only 5 prices are public (Acevichado Roll 95, Tartar Roll 97, Ika Maki 95, Masu Roll 60, Tabla Mix 175). Fried Roll, Ceviche Clásico, Causa Furay, Tataki Salad, Sashimi Bowl, Fetuccine a la Huancaína and Ramen show "Consultar". | `js/data.js` → `menu`, then `npm run seed` |
-| Full name of the "Tabla Mix" (the source was truncated: "Tabla mix hat…") | `js/data.js` |
-| Ingredients / descriptions per dish, and allergens | `js/data.js` (`desc`) |
-| Drinks / cocktails ("after office") with prices | `js/data.js` → `drinks` |
-| **Logo file + brand colours + fonts** (palette is provisional) | `assets/brand/`, `css/styles.css` tokens |
-| **Real photos and reels** of the dishes (no photos are shown, by design: nothing stock or AI-generated) | `assets/img`, `assets/video` |
-| Las Palmas address, map link and its own WhatsApp (if different) | `js/data.js` → `branches` + `/admin` → Sucursales |
-| Confirm opening hours per branch (from a Facebook post: Mon–Fri 18–23, Sat–Sun 12–15 and 18–23) | `js/data.js` → `defaultHours` / `branches[].hours` |
-| Delivery: zones, fee, delivery apps used | `/admin` → Sucursales (fee) and the `order_channel` enum |
-| Payment methods accepted | `payment_method` enum (001) + assistant facts |
-| Promos, combos, anniversary / founding year | `js/data.js` → `weekly`, `combos` |
-| Invoice (NIT) requirements | CRM fields already exist |
-| Supabase project + owner email; Anthropic key | `js/config.js`, Vercel env |
-| Domain (currently assumes `hattori.vercel.app`) | `js/config.js` → `siteUrl`, canonical in `index.html` |
+| Prices for **Tataki Salad** and **Ramen Kaizen** (new on Instagram, not in the PDF menu yet) | `js/data.js`, then `npm run seed` |
+| Drinks and cocktails with prices (not in the PDF) | `js/data.js` → `drinks` |
+| Las Palmas street address; confirm the map pin and whether it has its own WhatsApp | `js/data.js` → `branches` |
+| What the second WhatsApp in the bio (77070797) is for | `js/data.js` → `config.altWhatsApp` |
+| Confirm hours per branch and the lunch-menu schedule | `js/data.js` → `defaultHours` |
+| Delivery zones, fee, delivery apps; accepted payment methods | `/admin` → Sucursales; `payment_method` enum |
+| Allergen information per dish | `js/data.js` (`desc`) |
+| Supabase project (orders, tracking, /admin) and an Anthropic key (HattorIA) | `js/config.js`, Vercel env vars |
+| Original font files (Larken / Eyesome) if licensed for web | `css/styles.css` |
 
 ## Roadmap
 

@@ -5,16 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <title>Hattori · Backoffice</title>
-<meta name="theme-color" content="#14110f">
-<link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#0b0b0b">
+<link rel="icon" href="/favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@700;800&family=Manrope:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,800&family=Manrope:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="admin.css">
 </head>
 <body>
 <div id="login" class="login" hidden>
   <form class="login__card" id="loginForm">
-    <span class="brand"><i></i>HATTORI</span>
+    <img class="brand-logo" src="/assets/brand/logo-gold.png" alt="Hattori" width="900" height="545">
     <h1>Backoffice</h1>
     <label>Correo<input type="email" name="email" autocomplete="username" required></label>
     <label>Contraseña<input type="password" name="password" autocomplete="current-password" required></label>
@@ -26,7 +26,7 @@
 
 <div id="app" class="app" hidden>
   <aside class="side">
-    <span class="brand"><i></i>HATTORI</span>
+    <img class="brand-logo" src="/assets/brand/logo-gold.png" alt="Hattori" width="900" height="545">
     <nav id="nav" aria-label="Secciones"></nav>
     <div class="side__me" id="me"></div>
   </aside>
@@ -34,7 +34,7 @@
 </div>
 
 <div id="notconfigured" class="login" hidden>
-  <div class="login__card"><span class="brand"><i></i>HATTORI</span><h1>Falta configurar</h1>
+  <div class="login__card"><img class="brand-logo" src="/assets/brand/logo-gold.png" alt="Hattori" width="900" height="545"><h1>Falta configurar</h1>
     <p>Completa <code>supabaseUrl</code> y <code>supabaseKey</code> en <code>js/config.js</code> para activar el backoffice.</p></div>
 </div>
 

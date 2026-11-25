@@ -1,41 +1,44 @@
 /* =========================================================================
-   HATTORI design system
-   Direction: editorial Nikkei (sumi ink · washi paper · shu vermilion · kin gold),
+   HATTORI design system (brand v2: black + gold, from the logo and official menu)
+   Direction: dark editorial Nikkei (black · gold brush · charcoal · paper),
    informed by Mobbin references: Monte (centred serif wordmark + info flanks,
    typeset menu sheet), sweetgreen (bag slide-over, order context), Uber Eats /
    DoorDash (Delivery|Pickup segmented control, 2-column checkout), CHOPT /
    Chipotle (big signature rows), Slack/HubSpot (admin kanban).
 
-   PALETTE — PROVISIONAL. Brand assets (logo, post graphics) were not publicly
-   downloadable, so these values could not be pixel-sampled from Hattori's posts.
-   Token NAMES are fixed (the CSS is written against them); swap the hex values
-   once the owner shares the logo / brand kit. See README → Needs owner input.
-   ========================================================================= */
+   PALETTE — sampled from the logo and the official menu (see :root).
+   */
 :root {
-  --red: #c8372d;        /* primary: shu (vermilion) */
-  --red-600: #a92c23;
-  --red-deep: #7d1d17;
-  --wine: #14110f;       /* sumi ink: dark sections, footer */
-  --wine-2: #201b18;     /* dark card surface */
-  --cream: #f4eee4;      /* washi paper */
-  --cream-2: #e4d9c7;
-  --paper: #fbf8f2;
-  --mustard: #c9a45c;    /* accent: kin gold (prices, highlights) */
-  --mustard-2: #b38d45;
-  --ink: #1b1714;
-  --muted: #6e645b;
+  /* Sampled from Hattori's own assets:
+     logo (Instagram profile, 1040px): gold #D3A334 on pure black
+     official Menú PDF: charcoal #3D3F41, gold #C6A23C, paper #EDEDED
+     Token NAMES are fixed; --red is the PRIMARY brand colour (= Hattori gold). */
+  --red: #d3a334;        /* primary: logo gold */
+  --red-600: #b88a22;
+  --red-deep: #8a6514;
+  --wine: #0b0b0b;       /* logo black: dark sections, footer */
+  --wine-2: #1c1c1d;     /* dark cards */
+  --char: #3d3f41;       /* menu charcoal */
+  --cream: #ededed;      /* menu paper */
+  --cream-2: #d9d6d1;
+  --paper: #f7f6f3;
+  --mustard: #c6a23c;    /* menu gold (accents, prices) */
+  --mustard-2: #a9862a;
+  --ink: #141414;
+  --muted: #66625d;
   --wa: #25d366;
 
-  --font-display: "Shippori Mincho", "Times New Roman", serif;
+  --font-display: "Fraunces", Georgia, serif;          /* closest open font to the menu's Larken */
+  --font-script: "Allura", "Brush Script MT", cursive; /* menu script accents ("Hattori", "Medio día") */
   --font-body: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, monospace;
 
-  --radius: 24px;
-  --radius-sm: 14px;
+  --radius: 20px;
+  --radius-sm: 12px;
   --ease: cubic-bezier(.2, .8, .2, 1);
-  --shadow: 0 30px 60px -24px rgba(20, 17, 15, .45);
+  --shadow: 0 30px 60px -24px rgba(0, 0, 0, .55);
   --top: 36px;
-  --hdr: 76px;
+  --hdr: 80px;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -463,4 +466,161 @@ input, select, textarea { font: inherit; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .reveal { opacity: 1; transform: none; }
   html { scroll-behavior: auto; }
+}
+
+/* =========================================================================
+   BRAND v2 — black + gold (logo), Fraunces/Allura (closest open fonts to the
+   official menu's Larken + Eyesome Script), real Instagram photos and reels.
+   ========================================================================= */
+body { background: var(--paper); }
+.sec--paper { background: var(--paper); }
+.sec--washi { background: var(--cream); }
+.sec--ink { background: var(--wine); color: var(--cream); }
+.sec--char { background: var(--char); color: var(--cream); }
+.display { font-family: var(--font-display); font-weight: 700; letter-spacing: -.02em; }
+.script { font-family: var(--font-script); font-weight: 400; color: var(--red); font-size: 1.25em; letter-spacing: 0; line-height: .8; }
+.hl { color: var(--red-deep); font-style: italic; }
+.sec--ink .hl, .sec--char .hl { color: var(--red); }
+.eyebrow { color: var(--red-deep); }
+.sec--ink .eyebrow, .sec--char .eyebrow, .hero .kicker { color: var(--red); }
+.btn--red { --bg: var(--red); --fg: var(--ink); }
+.btn--red:hover { --bg: #e2b448; }
+.btn--gold { --bg: var(--mustard); --fg: var(--ink); }
+.add:hover { background: var(--red); color: var(--ink); }
+.add--gold { background: var(--red); color: var(--ink); }
+.add--gold:hover { background: var(--cream); }
+.badge { background: var(--ink); color: var(--red); }
+.badge--gold { background: var(--red); color: var(--ink); }
+.fine a { color: var(--red-deep); }
+
+/* header with the real logo */
+.hdr { background: var(--wine); }
+.hdr.is-solid { background: rgba(11, 11, 11, .9); }
+.wordmark__logo { height: 52px; width: auto; display: block; }
+.hdr__nav a:hover { color: var(--red); }
+.navpanel { background: var(--wine); color: var(--cream); border-top: 1px solid rgba(211,163,52,.3); }
+.navpanel a, .navpanel__ai { color: var(--cream); }
+.navpanel__ai { color: var(--red); }
+
+/* hero with real photo */
+.hero { background: var(--wine); padding-bottom: 170px; }
+.hero__photo { position: absolute; right: 0; top: 0; width: 58%; height: 100%; object-fit: cover; object-position: 50% 45%; }
+.hero__shade { position: absolute; inset: 0; background:
+  linear-gradient(90deg, var(--wine) 44%, rgba(11,11,11,.82) 54%, rgba(11,11,11,.25) 78%, rgba(11,11,11,.4)),
+  linear-gradient(0deg, var(--wine) 0%, transparent 30%); }
+.hero__title { font-family: var(--font-display); font-weight: 800; font-size: clamp(3.2rem, 7.2vw, 6.6rem); line-height: .95; }
+.hero__title .script { display: block; font-size: .78em; margin-bottom: .05em; }
+.hero__tag { font: 500 .78rem/1 var(--font-mono); letter-spacing: .2em; text-transform: uppercase; color: var(--red); margin: 20px 0 0; }
+.hero__lede { opacity: .85; }
+
+/* card stack with real photos */
+.stack__cards { aspect-ratio: 3 / 4.4; }
+.dish { padding: 0; background: var(--wine-2); color: var(--cream); border: 1px solid rgba(211,163,52,.35); }
+.dish[data-pos="hide"] { opacity: 0; transform: rotate(12deg) translate(40px, 16px) scale(.9); }
+.dish__art { flex: 1 1 auto; position: relative; overflow: hidden; display: block; min-height: 0; }
+.dish__art img { width: 100%; height: 100%; object-fit: cover; }
+.dish__badge { right: 14px; top: 14px; rotate: 0deg; background: var(--red); }
+.dish__cat { position: absolute; left: 14px; top: 14px; font: 500 .66rem/1 var(--font-mono); letter-spacing: .14em; text-transform: uppercase; background: rgba(11,11,11,.7); color: var(--cream); padding: 7px 10px; border-radius: 999px; }
+.dish__body { padding: 18px 22px 22px; }
+.dish__name { font-family: var(--font-display); font-size: 1.7rem; color: var(--cream); }
+.dish__desc { color: rgba(237,237,237,.7); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.price { color: var(--red); font-family: var(--font-display); }
+.dish .price small { color: var(--cream); }
+.stack__ctrl { color: var(--cream); }
+
+/* signature rows with photos */
+.sig { grid-template-columns: 112px 1fr auto auto; }
+.sig__img { width: 112px; height: 140px; object-fit: cover; border-radius: 14px; }
+.sig__img--logo { background: var(--wine) url(../assets/brand/logo-gold.png) center / 80% auto no-repeat; }
+.sig__no { display: block; margin-bottom: 8px; }
+.sig__name { font-family: var(--font-display); }
+.sig .price { color: var(--red-deep); }
+.sig__tag { background: var(--ink); color: var(--red); }
+
+/* menu sheet: masonry columns for "Todo", 2 columns for a single category */
+.sheet { display: block; columns: 3 320px; column-gap: clamp(24px, 4vw, 56px); }
+.sheet__col { break-inside: avoid; margin-bottom: 36px; }
+.sheet__col h3 { color: var(--ink); font-family: var(--font-display); border-bottom: 2px solid var(--red); padding-bottom: 8px; display: inline-block; }
+.sheet--one { columns: 1; }
+.sheet--one .sheet__col { display: grid; grid-template-columns: 1fr 1fr; column-gap: 56px; }
+.sheet--one .sheet__col > h3, .sheet--one .sheet__col > .colhead { grid-column: 1 / -1; }
+.sheet--one .sheet__col > h3 { justify-self: start; }
+.mi__price { color: var(--red-deep); font-weight: 500; }
+
+/* lunch menu */
+.lunch { background: var(--wine) url(../assets/brand/brush.png) right -120px bottom 40px / 70% auto no-repeat; }
+.lunch__grid { display: grid; grid-template-columns: 4fr 7fr; gap: clamp(28px, 6vw, 80px); align-items: start; }
+.lunch__grid header .btn { margin-top: 26px; color: var(--red); }
+.lunch__list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.lunch__it { display: grid; grid-template-columns: 1fr auto; grid-template-rows: auto auto; gap: 8px 14px; background: rgba(255,255,255,.04); border: 1px solid rgba(211,163,52,.25); border-radius: 16px; padding: 18px; }
+.lunch__it h3 { font: 700 1.2rem/1.15 var(--font-display); margin: 0 0 6px; }
+.lunch__it p { margin: 0; font-size: .86rem; opacity: .7; }
+.lunch__price { font: 800 1.8rem/1 var(--font-display); color: var(--red); white-space: nowrap; }
+.lunch__price small { font: 500 .75rem/1 var(--font-mono); color: var(--cream); margin-right: 3px; vertical-align: top; }
+.lunch__it .add { grid-column: 2; justify-self: end; align-self: end; }
+
+/* story video */
+.exp__art { aspect-ratio: 9 / 14; border: 1px solid rgba(211,163,52,.35); }
+.exp__art video { width: 100%; height: 100%; object-fit: cover; }
+.quote { border-color: var(--red); }
+.quote cite { color: var(--red); }
+
+/* reels rail */
+.reels { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 0 max(clamp(20px, 4vw, 48px), calc((100vw - 1240px) / 2 + 48px)) 10px; scrollbar-width: none; }
+.reels::-webkit-scrollbar { display: none; }
+.reel { flex: none; width: clamp(220px, 24vw, 300px); aspect-ratio: 9 / 16; border-radius: 20px; overflow: hidden; position: relative; scroll-snap-align: start; background: #000; border: 1px solid rgba(211,163,52,.3); }
+.reel video { width: 100%; height: 100%; object-fit: cover; }
+.reel__cap { position: absolute; inset: auto 0 0 0; padding: 40px 16px 16px; background: linear-gradient(transparent, rgba(0,0,0,.85)); color: #fff; font-weight: 600; font-size: .9rem; }
+.sec--char .roundbtn:hover { background: var(--red); color: var(--ink); border-color: var(--red); }
+
+/* instagram feed with real photos */
+.feed { grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.post { padding: 0; min-height: 0; aspect-ratio: 4 / 5; position: relative; overflow: hidden; border: 0; background: #000; }
+.post img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .6s var(--ease); }
+.post:hover img { transform: scale(1.06); }
+.post__over { position: absolute; inset: auto 0 0 0; padding: 50px 16px 16px; background: linear-gradient(transparent, rgba(0,0,0,.85)); color: #fff; display: flex; flex-direction: column; gap: 6px; }
+.post__over .post__tag { color: var(--red); }
+.post__over .post__txt { font: 500 .95rem/1.3 var(--font-display); }
+
+/* footer */
+.brush-strip { height: 56px; background: var(--wine) url(../assets/brand/brush.png) center / auto 46px repeat-x; }
+.ftr__sign { font-family: var(--font-display); }
+.ftr__sign .script { font-size: 1em; }
+.ftr__logo { width: 140px; height: auto; }
+.ftr__bar { background: var(--red); color: var(--ink); }
+.ftr__barin .ftr__logo { filter: brightness(0); width: 120px; }
+
+/* chat + misc on gold */
+.msg--me { background: var(--red); color: var(--ink); }
+.aifab__av, .chat__av, .phone__av { object-fit: cover; padding: 0; background: #000; }
+.chat__hd h2 { color: var(--red); }
+.aifab__txt b { color: var(--red); }
+.mbar__ai { background: var(--red); color: var(--ink); }
+.mbar__go { background: var(--red); }
+.toast { background: var(--wine); border: 1px solid var(--red); }
+.choice input:checked + span { border-color: var(--red); background: rgba(211,163,52,.12); }
+.steps li.on { border-color: var(--red); }
+.funnel__form { background: var(--wine-2); border: 1px solid rgba(211,163,52,.2); }
+.success { background: #14281c; }
+
+@media (max-width: 1080px) {
+  .lunch__grid { grid-template-columns: 1fr; }
+  .feed { grid-template-columns: repeat(2, 1fr); }
+  .hero__photo { width: 100%; opacity: .55; }
+  .hero__shade { background: linear-gradient(180deg, rgba(11,11,11,.55), var(--wine) 85%); }
+}
+@media (max-width: 860px) {
+  .wordmark__logo { height: 40px; }
+  .hero { padding-bottom: 40px; }
+  .sig { grid-template-columns: 84px 1fr auto; }
+  .sig__img { width: 84px; height: 104px; }
+  .sig .price { grid-column: 2; grid-row: 2; }
+  .sig .add { grid-column: 3; grid-row: 1 / span 2; }
+  .sheet--one .sheet__col { grid-template-columns: 1fr; }
+  .lunch__list { grid-template-columns: 1fr; }
+  .lunch { background-size: 140% auto; }
+}
+@media (max-width: 760px) {
+  .feed { grid-template-columns: repeat(2, 1fr); }
+  .reel { width: 62vw; }
 }

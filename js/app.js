@@ -45,7 +45,7 @@
   }
   function lineHTML(id, q) {
     const it = CAT[id];
-    return `<div class="line"><span class="line__name">${esc(it.name)}<br><small>${money(it.price * q)}</small></span>
+    return `<div class="line"><span class="line__name">${esc(it.name)}${it.size ? " · " + esc(it.size) : ""}<br><small>${money(it.price * q)}</small></span>
       <span class="qty"><button type="button" data-dec="${esc(id)}" aria-label="Quitar uno de ${esc(it.name)}">−</button><b>${q}</b>
       <button type="button" data-inc="${esc(id)}" aria-label="Agregar uno de ${esc(it.name)}">+</button></span></div>`;
   }
@@ -118,27 +118,26 @@
     }).join("");
   }
 
-  /* ------------------------------------------------------------ hero card stack */
+  /* ------------------------------------------------------------ hero card stack (real dish photos) */
   const feat = B.featured.map((id) => CAT[id]).filter(Boolean);
   let stackI = 0, stackTimer;
-  const KANJI = { rolls: "巻", compartir: "盛", nikkei: "日系" };
-  const KANJI_LBL = { rolls: "Maki · roll", compartir: "Mori · tabla", nikkei: "Nikkei" };
+  const priceHTML = (it) => typeof it.price === "number" ? `<p class="price"><small>${B.config.currency}</small>${it.price}</p>` : `<span class="mi__price ask">Consultar</span>`;
   function renderStack() {
     $("[data-stack]").innerHTML = feat.map((it, i) => `
       <article class="dish" data-i="${i}" aria-label="${i + 1} de ${feat.length}: ${esc(it.name)}">
-        <div class="dish__no"><span>N.º 0${i + 1}</span><span>${esc(it.catName)}</span></div>
-        <div class="dish__art"><div class="dish__circle" aria-hidden="true"><span>${KANJI[it.cat] || "日系"}</span><small>${esc(KANJI_LBL[it.cat] || "Nikkei")}</small></div>${it.star ? `<span class="dish__badge">Favorito</span>` : it.share ? `<span class="dish__badge">Para compartir</span>` : ""}</div>
-        <h3 class="dish__name">${esc(it.name)}</h3>
-        <p class="dish__desc">${esc(it.desc)}${it.size ? " · " + esc(it.size) : ""}</p>
-        <div class="dish__foot"><p class="price"><small>${B.config.currency}</small>${it.price}</p>
-          <button class="btn btn--red" data-add="${esc(it.id)}">Agregar</button></div>
+        <div class="dish__art"><img src="${esc(it.img)}" alt="${esc(it.name)} de Hattori" width="600" height="800" ${i ? 'loading="lazy"' : 'fetchpriority="high"'}>
+          ${it.star ? `<span class="dish__badge">Favorito</span>` : ""}<span class="dish__cat">${esc(it.catName)}</span></div>
+        <div class="dish__body"><h3 class="dish__name">${esc(it.name)}</h3>
+        <p class="dish__desc">${esc(it.desc)}</p>
+        <div class="dish__foot">${priceHTML(it)}
+          <button class="btn btn--red" data-add="${esc(it.id)}">Agregar</button></div></div>
       </article>`).join("");
     layoutStack();
   }
   function layoutStack() {
     $$(".dish").forEach((el) => {
       const i = +el.dataset.i, pos = (i - stackI + feat.length) % feat.length;
-      el.dataset.pos = pos; el.style.zIndex = feat.length - pos; el.inert = pos !== 0;
+      el.dataset.pos = pos > 2 ? "hide" : pos; el.style.zIndex = feat.length - pos; el.inert = pos !== 0;
     });
     $("[data-stack-count]").textContent = `${stackI + 1} / ${feat.length}`;
   }
@@ -154,43 +153,53 @@
   $("#stack").addEventListener("touchstart", (e) => { tx = e.touches[0].clientX; }, { passive: true });
   $("#stack").addEventListener("touchend", (e) => { if (tx == null) return; const dx = e.changedTouches[0].clientX - tx; if (Math.abs(dx) > 50) { stackGo(dx < 0 ? 1 : -1); restartStack(); } tx = null; });
 
-  /* ------------------------------------------------------------ signatures + menu sheet */
+  /* ------------------------------------------------------------ signatures (photo rows) + menu sheet */
   function renderSigs() {
-    const ids = ["acevichado-roll", "tartar-roll", "tabla-mix", "fried-roll", "ceviche-clasico"].filter((id) => CAT[id]);
+    const ids = ["acevichado-roll", "tartar-roll", "fettuccine-saltado", "sashimi-bowl", "fried-roll", "tabla-mix-hatt"].filter((id) => CAT[id]);
     $("[data-sigs]").innerHTML = ids.map((id) => {
       const it = CAT[id];
-      return `<li class="sig reveal"><span class="sig__no"></span>
-        <div><h3 class="sig__name">${esc(it.name)}${it.star ? `<span class="sig__tag">Favorito</span>` : it.share ? `<span class="sig__tag">Compartir</span>` : ""}</h3><p class="sig__desc">${esc(it.desc)}</p></div>
-        ${it.orderable ? `<p class="price"><small>${B.config.currency}</small>${it.price}</p><button class="add" data-add="${esc(id)}" aria-label="Agregar ${esc(it.name)}">+</button>`
-          : `<span class="mi__price ask">Consultar</span><a class="add" href="${WA(B.config.callCenter, "Hola Hattori 👋 ¿Cuánto cuesta el " + it.name + "?")}" target="_blank" rel="noopener" aria-label="Consultar ${esc(it.name)} por WhatsApp">?</a>`}
+      return `<li class="sig reveal">${it.img ? `<img class="sig__img" src="${esc(it.img)}" alt="" width="160" height="200" loading="lazy">` : `<span class="sig__img sig__img--logo" aria-hidden="true"></span>`}
+        <div><span class="sig__no"></span><h3 class="sig__name">${esc(it.name)}${it.star ? `<span class="sig__tag">Favorito</span>` : it.share ? `<span class="sig__tag">Para compartir</span>` : ""}</h3><p class="sig__desc">${esc(it.desc)}${it.size ? " · " + esc(it.size) : ""}</p></div>
+        ${priceHTML(it)}<button class="add" data-add="${esc(id)}" aria-label="Agregar ${esc(it.name)}">+</button>
       </li>`;
     }).join("");
   }
-  let activeTab = "all", query = "";
+  let activeTab = "rolls", query = "";
   function renderTabs() {
     const tabs = [{ id: "all", name: "Todo" }].concat(B.menu.map((c) => ({ id: c.id, name: c.name })));
     $("[data-tabs]").innerHTML = tabs.map((t) => `<button class="tab" role="tab" aria-selected="${t.id === activeTab}" data-tab="${esc(t.id)}">${esc(t.name)}</button>`).join("");
   }
   const norm = (s) => String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+  function itemHTML(it) {
+    return `<div class="mi">
+      <span class="mi__name">${esc(it.name)}${it.star ? ` <span class="badge">Favorito</span>` : ""}${it.hot ? ` <span class="badge">Nuevo</span>` : ""}${it.size ? ` <span class="badge badge--gold">${esc(it.size)}</span>` : ""}<span class="lead"></span></span>
+      ${typeof it.price === "number" ? `<span class="mi__price">${it.price}</span>` : `<span class="mi__price ask">Consultar</span>`}
+      <p class="mi__desc">${esc(it.desc)}</p>
+      <span class="mi__act">${typeof it.price === "number" ? `<button class="add" data-add="${esc(it.id)}" aria-label="Agregar ${esc(it.name)}${it.size ? " " + esc(it.size) : ""}">+</button>`
+        : `<a class="ask-btn" href="${WA(B.config.callCenter, "Hola Hattori 👋 Quiero consultar por el " + it.name)}" target="_blank" rel="noopener">WhatsApp</a>`}</span>
+    </div>`;
+  }
   function renderSheet() {
     const q = norm(query.trim());
-    const cols = B.menu.filter((c) => activeTab === "all" || c.id === activeTab).map((c) => {
-      const items = c.items.filter((it) => !q || norm(it.name + " " + it.desc).includes(q));
+    const cats = B.menu.filter((c) => q || activeTab === "all" || c.id === activeTab);
+    const cols = cats.map((c) => {
+      const items = c.items.filter((it) => !q || norm(it.name + " " + it.desc + " " + c.name).includes(q));
       if (!items.length) return "";
-      return `<div class="sheet__col"><h3>${esc(c.name)}</h3><div class="colhead"><span>Plato</span><span>Bs</span></div>
-        ${items.map((it) => `<div class="mi">
-          <span class="mi__name">${esc(it.name)}${it.star ? ` <span class="badge">Favorito</span>` : ""}${it.size ? ` <span class="badge badge--gold">${esc(it.size)}</span>` : ""}<span class="lead"></span></span>
-          ${typeof it.price === "number" ? `<span class="mi__price">${it.price}</span>` : `<span class="mi__price ask">Consultar</span>`}
-          <p class="mi__desc">${esc(it.desc)}</p>
-          <span class="mi__act">${typeof it.price === "number" ? `<button class="add" data-add="${esc(it.id)}" aria-label="Agregar ${esc(it.name)}">+</button>`
-            : `<a class="ask-btn" href="${WA(B.config.callCenter, "Hola Hattori 👋 Quiero consultar por el " + it.name)}" target="_blank" rel="noopener">WhatsApp</a>`}</span>
-        </div>`).join("")}</div>`;
+      return `<div class="sheet__col"><h3>${esc(c.name)}</h3><div class="colhead"><span>Plato</span><span>Bs</span></div>${items.map(itemHTML).join("")}</div>`;
     }).join("");
-    $("[data-sheet]").innerHTML = cols || `<p class="sheet__empty">No encontramos “${esc(query)}”. Pregúntale a HattorIA ✦</p>`;
+    const sheet = $("[data-sheet]");
+    sheet.classList.toggle("sheet--one", cats.length === 1 && !q);
+    sheet.innerHTML = cols || `<p class="sheet__empty">No encontramos “${esc(query)}”. Pregúntale a HattorIA ✦</p>`;
   }
   $("[data-tabs]").addEventListener("click", (e) => { const b = e.target.closest("[data-tab]"); if (!b) return; activeTab = b.dataset.tab; renderTabs(); renderSheet(); });
   $("[data-menu-search]").addEventListener("input", (e) => { query = e.target.value; renderSheet(); });
 
+  function renderLunch() {
+    $("[data-lunch]").innerHTML = B.lunch.items.map((it) => `<li class="lunch__it">
+      <div><h3>${esc(it.name)}</h3><p>${esc(it.desc)}</p></div>
+      <span class="lunch__price"><small>${B.config.currency}</small>${it.price}</span>
+      <button class="add add--gold" data-add="${esc(it.id)}" aria-label="Agregar ${esc(it.name)} (medio día)">+</button></li>`).join("");
+  }
   function renderStory() {
     const s = B.story;
     $("[data-story-eyebrow]").textContent = s.eyebrow;
@@ -198,13 +207,32 @@
     $("[data-story-paras]").innerHTML = s.paragraphs.map((p) => `<p>${esc(p)}</p>`).join("");
     $("[data-story-quote]").innerHTML = `“${esc(s.quote.text)}”<cite>— ${esc(s.quote.by)}</cite>`;
   }
+  function renderReels() {
+    $("[data-reels]").innerHTML = B.reels.map((r) => `<a class="reel" href="${esc(r.url)}" target="_blank" rel="noopener" aria-label="${esc(r.caption)} (ver en Instagram)">
+      <video data-autoplay muted playsinline loop preload="none" poster="${esc(r.src)}.webp" width="540" height="960"><source src="${esc(r.src)}.mp4" type="video/mp4"></video>
+      <span class="reel__cap">${esc(r.caption)}</span></a>`).join("");
+    const rail = $("[data-reels]");
+    const step = () => (rail.querySelector(".reel") || { offsetWidth: 300 }).offsetWidth + 16;
+    $("[data-reels-next]").onclick = () => rail.scrollBy({ left: step(), behavior: reduced ? "auto" : "smooth" });
+    $("[data-reels-prev]").onclick = () => rail.scrollBy({ left: -step(), behavior: reduced ? "auto" : "smooth" });
+  }
   function renderFeed() {
     $("[data-feed]").innerHTML = B.feed.map((p) => `<a class="post reveal" href="${esc(p.url)}" target="_blank" rel="noopener">
-      <span class="post__tag">${esc(p.tag)}</span><p class="post__txt">${esc(p.text)}</p><span class="post__go">Ver en Instagram ↗</span></a>`).join("");
+      <img src="${esc(p.img)}" alt="${esc(p.tag)} · Hattori" width="600" height="750" loading="lazy">
+      <span class="post__over"><span class="post__tag">${esc(p.tag)}</span><span class="post__txt">${esc(p.text)}</span></span></a>`).join("");
+  }
+  // Videos play only while ≥35% visible (and never with reduced motion)
+  function wireVideos() {
+    if (!("IntersectionObserver" in window)) return;
+    const vo = new IntersectionObserver((es) => es.forEach((en) => {
+      const v = en.target;
+      if (en.isIntersecting && !reduced) { if (v.preload === "none") v.preload = "auto"; v.play().catch(() => {}); } else v.pause();
+    }), { threshold: 0.35 });
+    $$("video[data-autoplay]").forEach((v) => vo.observe(v));
   }
   function renderPicker() {
     $("[data-picker]").innerHTML = Object.values(CAT).filter((i) => i.orderable).map((i) =>
-      `<button type="button" data-add="${esc(i.id)}">${esc(i.name)}<small>${money(i.price)}</small></button>`).join("");
+      `<button type="button" data-add="${esc(i.id)}">${esc(i.name)}${i.size ? " · " + esc(i.size) : ""}<small>${money(i.price)}</small></button>`).join("");
   }
 
   /* ------------------------------------------------------------ funnel */
@@ -528,7 +556,7 @@
 
   /* ------------------------------------------------------------ boot */
   $("[data-year]").textContent = new Date().getFullYear();
-  renderStack(); renderSigs(); renderTabs(); renderSheet(); renderStory(); renderFeed(); renderPicker();
+  renderStack(); renderSigs(); renderTabs(); renderSheet(); renderLunch(); renderStory(); renderReels(); renderFeed(); renderPicker(); wireVideos();
   renderLive(); setInterval(renderLive, 60000);
   renderCart(); gotoStep(1, true); observeReveal(); restartStack(); onScroll();
 })();
