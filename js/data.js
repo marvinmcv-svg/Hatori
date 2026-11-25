@@ -65,7 +65,8 @@
       {
         id: "nikkei", name: "Cocina Nikkei", items: [
           // [FB] "Fresco, intenso y lleno de sabor. Nuestro Ceviche Clásico siempre es una buena elección."
-          { id: "ceviche-clasico", name: "Ceviche Clásico", price: null, desc: "Fresco, intenso y lleno de sabor." },
+          // [IG] https://www.instagram.com/reel/DeNOa5pqUVY/ "se prepara al momento y se sirve con el equilibrio perfecto de frescura y sabor"
+          { id: "ceviche-clasico", name: "Ceviche Clásico", price: null, desc: "Se prepara al momento, con el equilibrio perfecto de frescura y sabor." },
           // [TT] "Hattori- Tartar Roll, Causa Furay y su Acevichado"
           { id: "causa-furay", name: "Causa Furay", price: null, desc: "Causa de la casa." },
           // [IG] https://instagram.com/p/DgK0h7MxTEZ "Nuestra Tataki Salad es esa opción que siempre sorprende desde el primer bocado"
@@ -74,8 +75,8 @@
           { id: "sashimi-bowl", name: "Sashimi Bowl", price: null, desc: "Ingredientes frescos y todo el sabor Nikkei en un bowl." },
           // [IG] https://instagram.com/p/DfhdWI1xtVl + https://instagram.com/p/DfVXIGRq-i3 "Fetuccine saltado y esa salsa huancaína"
           { id: "fetuccine-huancaina", name: "Fetuccine Saltado a la Huancaína", price: null, desc: "Dos favoritos en un solo plato: fetuccine saltado y salsa huancaína." },
-          // [IG] https://instagram.com/p/DfNSRR6qX24 "Desde sushi y ramen hasta platos para compartir"
-          { id: "ramen", name: "Ramen", price: null, desc: "Para los días de antojo de algo caliente." },
+          // [IG] https://www.instagram.com/reel/Det9XlPKDk9/ "Nuestro Ramen Kaizen se prepara con dedicación para ofrecer una experiencia llena de sabor en cada cucharada"
+          { id: "ramen-kaizen", name: "Ramen Kaizen", price: null, desc: "Se prepara con dedicación: una experiencia llena de sabor en cada cucharada." },
         ],
       },
     ],
@@ -97,8 +98,9 @@
     branches: [
       {
         id: "equipetrol", name: "Equipetrol", whatsapp: "59162098707",
-        address: "Calle Los Lirios #86, Equipetrol", // [IG-AO] + [FB] + [DIN]
-        maps: "https://maps.google.com/?cid=9195594500659114044", // [DIN] "Cómo llegar"
+        // [IG-AO] + [FB] + [DIN] · cross streets + pin: https://mundocamba.com/place/hattori/
+        address: "Calle Los Lirios #86, entre C. Tropical y C. Los Flamboyanos · Equipetrol",
+        maps: "https://maps.google.com/?q=-17.761537,-63.200687",
         hours: null, // uses default hours below
       },
       {
@@ -125,6 +127,9 @@
       "Pedidos y consultas por WhatsApp al 62098707.",
       "En la carta hay sushi, ceviches, tiraditos, ramen y platos para compartir.",
       "Hattori es un lugar de after office con tragos.",
+      "Hay cervezas, vinos, jugos naturales, gaseosas y cócteles de autor (sin lista de precios publicada).",
+      "Las reservas de mesa se hacen por WhatsApp al 62098707.",
+      "La sucursal de Las Palmas es la más nueva.",
       "Horario: lunes a viernes de 18:00 a 23:00; sábados y domingos de 12:00 a 15:00 y de 18:00 a 23:00.",
     ],
 
